@@ -1,28 +1,117 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+import './App.css'
+
+import Header from './features/Header.js'
+import Home from './pages/Home.js'
+import Basic from './pages/Basic.js'
+import TOS from './pages/TOS.js'
+import AddYourBusiness from './pages/AddYourBusiness.js'
+import SignUp from './pages/SignUp.js'
+import LogIn from './pages/LogIn.js'
+
+const components = {
+  "Activity" : {
+    ideal: 200,
+    min: 120,
+    max: 300
   }
 }
 
-export default App;
+const specs = {
+  "App": {
+    "min": 300,
+    "max": 800,
+    "style": {
+      "margin": 0,
+      "padding": 20
+    },
+    "children": {}
+  },
+  "Categories": [{
+    "range": {
+      "min": 300,
+      "max": 450
+    },
+    "style": {
+      "margin": 0,
+      "padding": 20
+    },
+    "children": {
+      "Activity" : {
+        "fit": 1,
+        "style": {
+          "margin": 0,
+          "padding": 10
+        }
+      }
+    }
+  },
+  ]
+}
+
+class App extends React.Component {
+  constructor(props) {
+  super(props)
+    this.state = {
+      height: 0,
+      width: 0,
+    }
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
+  }
+  componentDidMount() {
+    this.updateWindowDimensions()
+    window.addEventListener('resize', this.updateWindowDimensions)
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions)
+  }
+  updateWindowDimensions() {
+    this.setState({ width: window.innerWidth, height: window.innerHeight })
+  }
+
+  render() {
+    return (
+      <div>
+        <BrowserRouter>
+          <div>
+            <Header  />
+            <Switch>
+              <Route
+                path="/" exact
+                render={(props)=><Home />}
+              />
+              <Route
+                path="/help"
+                render={(props)=><Basic header="Help" content="This is example help content" />}
+              />
+              <Route
+                path="/tos"
+                render={(props)=><TOS />}
+              />
+              <Route
+                path="/about"
+                render={(props)=><Basic header="About" content="This is example about content" />}
+              />
+              <Route
+                path="/addyourbusiness"
+                render={(props)=><AddYourBusiness />}
+              />
+              <Route
+                path="/signup"
+                render={(props)=><SignUp />}
+              />
+              <Route
+                path="/login"
+                render={(props)=><LogIn />}
+              />
+            </Switch>
+          </div>
+        </BrowserRouter>
+      </div>
+    )
+  }
+}
+
+export default App
