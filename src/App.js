@@ -9,7 +9,7 @@ import Basic from './pages/Basic.js'
 import TOS from './pages/TOS.js'
 import AddYourBusiness from './pages/AddYourBusiness.js'
 import SignUp from './pages/SignUp.js'
-import LogIn from './pages/LogIn.js'
+import SignIn from './pages/SignIn.js'
 
 const components = {
   "Activity" : {
@@ -103,8 +103,8 @@ class App extends React.Component {
                 render={(props)=><SignUp />}
               />
               <Route
-                path="/login"
-                render={(props)=><LogIn />}
+                path="/signin"
+                render={(props)=><SignIn />}
               />
             </Switch>
           </div>

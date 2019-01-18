@@ -1,8 +1,9 @@
 import React from 'react'
 import BackButtonHeader from './../components/BackButtonHeader.js'
 import Footer from './../features/Footer.js'
+import SignInForm from './../components/SignInForm.js'
 
-class LogIn extends React.Component {
+class SignIn extends React.Component {
   render() {
     return(
       <div>
@@ -10,6 +11,7 @@ class LogIn extends React.Component {
         <div className="basic">
           <div className="basicHeader">{this.props.header}</div>
           <p className="basicContent">{this.props.content}</p>
+          <SignInForm />
         </div>
         <Footer />
       </div>
@@ -17,4 +19,4 @@ class LogIn extends React.Component {
   }
 }
 
-export default LogIn
+export default SignIn
