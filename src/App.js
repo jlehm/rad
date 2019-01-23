@@ -10,6 +10,7 @@ import TOS from './pages/TOS.js'
 import AddYourBusiness from './pages/AddYourBusiness.js'
 import SignUp from './pages/SignUp.js'
 import SignIn from './pages/SignIn.js'
+import Profile from './pages/Profile.js'
 
 const components = {
   "Activity" : {
@@ -105,6 +106,10 @@ class App extends React.Component {
               <Route
                 path="/signin"
                 render={(props)=><SignIn />}
+              />
+              <Route
+                path="/profile"
+                render={(props)=><Profile />}
               />
             </Switch>
           </div>

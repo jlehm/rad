@@ -9,32 +9,8 @@ import Footer from './../features/Footer.js'
 
 import SearchProvider from './../containers/SearchProvider.js'
 
-const categories = [
-  {
-    label: "Events",
-    image: "https://res.cloudinary.com/dtvu2cwfg/image/upload/v1543693807/parkatpoint.jpg"
-  },
-  {
-    label: "Museums",
-    image: "https://res.cloudinary.com/dtvu2cwfg/image/upload/v1543693807/parkatpoint.jpg"
-  },
-  {
-    label: "National Parks",
-    image: "https://res.cloudinary.com/dtvu2cwfg/image/upload/v1543693807/parkatpoint.jpg"
-  },
-  {
-    label: "Amusement",
-    image: "https://res.cloudinary.com/dtvu2cwfg/image/upload/v1543693807/parkatpoint.jpg"
-  },
-  {
-    label: "Adventure",
-    image: "https://res.cloudinary.com/dtvu2cwfg/image/upload/v1543693807/parkatpoint.jpg"
-  },
-  {
-    label: "Sports",
-    image: "https://res.cloudinary.com/dtvu2cwfg/image/upload/v1543693807/parkatpoint.jpg"
-  },
-]
+import defs_categories from './../constants/defs_categories.js'
+
 const recommended = [
    {
      id: "0",
@@ -116,7 +92,7 @@ class Home extends React.Component {
       <div className="Home">
         <SearchProvider>
           <SearchContainer {...this.props} />
-          <Categories {...this.props} categories={categories}/>
+          <Categories {...this.props} categories={defs_categories}/>
           <Recommended {...this.props} data={recommended}/>
           <Featured {...this.props} />
           <Footer {...this.props} />

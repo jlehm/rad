@@ -6,7 +6,8 @@ import ReusableButton from './../components/ReusableButton.js'
 
 const SignUpForm = () => (
   <div>
-    <ReusableInput type="name" label="name" />
+    <ReusableInput type="first name" label="first name" />
+    <ReusableInput type="last name" label="last name" />
     <ReusableInput type="email" label="email" />
     <ReusableInput type="password" label="password" />
     <ReusableButton label="Submit" onClick={()=>console.log('do something!')} />

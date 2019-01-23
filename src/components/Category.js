@@ -1,8 +1,8 @@
 import React from 'react'
 import './Category.css'
 
-const Category = props => {
-  let {image, label} = props.data;
+const Category = ({data}) => {
+  let {image, label} = data;
   const style = {
     background: 'black',
     backgroundImage: `url(${image})`,
