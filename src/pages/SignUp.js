@@ -5,11 +5,9 @@ import SignUpForm from './../components/SignUpForm.js'
 
 const SignUp = props => {
   return(
-    <div>
+    <div >
       <BackButtonHeader />
-      <div className="basic">
-        <div className="basicHeader">{props.header}</div>
-        <p className="basicContent">{props.content}</p>
+      <div className="signUpFormWrapper">
         <SignUpForm />
       </div>
       <Footer />

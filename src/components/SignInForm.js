@@ -5,10 +5,12 @@ import ReusableButton from './../components/ReusableButton.js'
 import ReusableLink from './../components/ReusableLink.js'
 
 import './ButtonLinkWrapper.css'
+import './SignInForm.css'
 
 
 const SignInForm = () => (
-  <div>
+  <div className="signInForm">
+    <div className="signInFormLabel">Sign In</div>
     <ReusableInput type="email" label="email" />
     <ReusableInput type="password" label="password" />
     <div className="ButtonLinkWrapper">

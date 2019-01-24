@@ -8,9 +8,7 @@ class SignIn extends React.Component {
     return(
       <div>
         <BackButtonHeader />
-        <div className="basic">
-          <div className="basicHeader">{this.props.header}</div>
-          <p className="basicContent">{this.props.content}</p>
+        <div className="signInFormWrapper">
           <SignInForm />
         </div>
         <Footer />
