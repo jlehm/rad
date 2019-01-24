@@ -10,13 +10,13 @@ const Activity = (props) => {
     backgroundPosition: 'center'
   }
   return (
-    <div className="activity">
+    <li className="activity">
       <div className="activityThumb" style={style}></div>
       <div className="activityTitle">{props.title}</div>
       <div className="activityText">{props.text}</div>
       <Rating rating={props.rating} />
       <div className="activityPrice">{props.price}</div>
-    </div>
+    </li>
   )
 }
 

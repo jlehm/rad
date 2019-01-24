@@ -24,8 +24,9 @@ class Categories extends React.Component {
   render() {
     let categories = this.props.categories
     return(
+    <div>
+      <div className="categoriesHeader">Find your next adventure</div>
       <div className="categories">
-        <div className="categoriesHeader">Find your next adventure</div>
         <div className="categoriesContainer">
           <ArrowButton
             direction={"left"}
@@ -44,6 +45,7 @@ class Categories extends React.Component {
           />
         </div>
       </div>
+    </div>
     )
   }
 }

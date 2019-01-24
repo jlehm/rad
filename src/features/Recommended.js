@@ -6,9 +6,11 @@ const Recommended = ({data}) => {
   return (
     <div className="recommended">
       <div className="recommendedHeader">Recommended</div>
+      <ul>
         {data.map((data)=>{
           return (<Activity key={data.id} thumb={data.thumb} title={data.title} text={data.text} rating={data.rating} price={data.price} />)
         })}
+      </ul>
     </div>
   )
 }

@@ -1,5 +1,5 @@
 .categories {
-  padding: 20px;
+  padding: 10px;
   overflow: auto;
   box-sizing: border-box;
   -webkit-overflow-scrolling: touch;
@@ -10,12 +10,12 @@
 .categoriesHeader {
   font-family: CircularStd-Bold;
   font-size: 24px;
-  padding: 20px 0;
+  padding: 0 20px;
 }
 .categoriesContainer {
   width: fit-content;
   white-space: nowrap;
   display: block;
   overflow: auto;
-  padding: 0 20px 0 0;
+  padding: 0;
 }
