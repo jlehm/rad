@@ -15,6 +15,7 @@
   display: inline-block;
   text-decoration: none;
   color: black;
+  border-bottom: 2px solid white;
 
 }
 .Menu-item a {
@@ -23,5 +24,5 @@
 }
 .Menu-item:hover {
   cursor: pointer;
-  border-bottom: 2px solid #50E3C2;
+  border-color: #50E3C2;
 }
