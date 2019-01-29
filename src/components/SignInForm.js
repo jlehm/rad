@@ -1,22 +1,76 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
+import { compose } from 'recompose'
 
-import ReusableInput from './../components/ReusableInput.js'
-import ReusableButton from './../components/ReusableButton.js'
-import ReusableLink from './../components/ReusableLink.js'
+import { withFirebase } from './../containers/FirebaseContext.js'
 
-import './ButtonLinkWrapper.css'
-import './SignInForm.css'
+const INITIAL_STATE = {
+  email: '',
+  password: '',
+  error: null,
+};
 
+class SignInForm extends React.Component {
+  constructor(props) {
+    super(props)
 
-const SignInForm = () => (
-  <div className="signInForm">
-    <div className="signInFormLabel">Sign In</div>
-    <ReusableInput type="email" label="email" />
-    <ReusableInput type="password" label="password" />
-    <div className="ButtonLinkWrapper">
-      <ReusableButton label="Submit" onClick={()=>console.log('do something!')} />
-      <ReusableLink label="Forgot Password?" />
-    </div>
-  </div>
-)
-export default SignInForm
+    this.state = { ...INITIAL_STATE }
+  }
+
+  onSubmit = event => {
+    const { email, password } = this.state
+
+    this.props.firebase
+      .doSignInWithEmailAndPassword(email, password)
+      .then(() => {
+        this.setState({ ...INITIAL_STATE })
+        this.props.history.push('/')
+      })
+      .catch(error => {
+        this.setState({ error })
+      })
+
+    event.preventDefault()
+  }
+
+  onChange = event => {
+    this.setState({ [event.target.name]: event.target.value })
+  }
+
+  render() {
+    const { email, password, error } = this.state
+
+    const isInvalid = password === '' || email === ''
+
+    return (
+      <form onSubmit={this.onSubmit}>
+        <input
+          name="email"
+          value={email}
+          onChange={this.onChange}
+          type="text"
+          placeholder="Email Address"
+        />
+        <input
+          name="password"
+          value={password}
+          onChange={this.onChange}
+          type="password"
+          placeholder="Password"
+        />
+        <button disabled={isInvalid} type="submit">
+          Sign In
+        </button>
+
+        {error && <p>{error.message}</p>}
+      </form>
+    );
+  }
+}
+
+const SignInFormWithFirebase = compose(
+  withRouter,
+  withFirebase,
+)(SignInForm)
+
+export default SignInFormWithFirebase

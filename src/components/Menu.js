@@ -28,6 +28,9 @@ class Menu extends Component {
         },{
           "label": "Sign In",
           "route": "/signin"
+        },{
+          "label": "Sign Out",
+          "route": "/signout"
         }
       ]
     }
