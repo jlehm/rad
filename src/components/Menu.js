@@ -3,6 +3,8 @@ import { NavLink, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './Menu.css';
 
+import AuthUserContext from './../containers/AuthUserContext.js'
+
 class Menu extends Component {
   static propTypes = {
     match: PropTypes.object.isRequired,
@@ -39,11 +41,13 @@ class Menu extends Component {
     }
     return (
       <div className="Menu">
-        {routesObj.routes.map((route) => {
-          return (
-            route.route === this.props.location.pathname ) ? (null) : (<NavLink className="Menu-item" key={route.route.toString()} to={route.route}>{route.label}</NavLink>)
-          })
-        }
+
+          {routesObj.routes.map((route) => {
+            return (
+              route.route === this.props.location.pathname ) ? (null) : (<NavLink className="Menu-item" key={route.route.toString()} to={route.route}>{route.label}</NavLink>)
+            })
+          }
+
       </div>
     )
   }
