@@ -1,7 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import { withFirebase } from './containers/FirebaseContext.js'
-import AuthUserContext from './containers/AuthUserContext.js'
+import withAuthentication from './HOCs/withAuthentication.js'
 
 import './App.css'
 
@@ -14,120 +13,48 @@ import SignUp from './pages/SignUp.js'
 import SignIn from './pages/SignIn.js'
 import Profile from './pages/Profile.js'
 
-const components = {
-  "Activity" : {
-    ideal: 200,
-    min: 120,
-    max: 300
-  }
-}
+const App = () => (
+  <div>
+    <BrowserRouter>
+      <React.Fragment>
+        <Header />
+        <Switch>
+          <Route
+            path="/" exact
+            render={(props)=><Home />}
+          />
+          <Route
+            path="/help"
+            render={(props)=><Basic header="Help" content="This is example help content" />}
+          />
+          <Route
+            path="/tos"
+            render={(props)=><TOS />}
+          />
+          <Route
+            path="/about"
+            render={(props)=><Basic header="About" content="This is example about content" />}
+          />
+          <Route
+            path="/addyourbusiness"
+            render={(props)=><AddYourBusiness />}
+          />
+          <Route
+            path="/signup"
+            render={(props)=><SignUp />}
+          />
+          <Route
+            path="/signin"
+            render={(props)=><SignIn />}
+          />
+          <Route
+            path="/profile"
+            render={(props)=><Profile />}
+          />
+        </Switch>
+      </React.Fragment>
+    </BrowserRouter>
+  </div>
+)
 
-const specs = {
-  "App": {
-    "min": 300,
-    "max": 800,
-    "style": {
-      "margin": 0,
-      "padding": 20
-    },
-    "children": {}
-  },
-  "Categories": [{
-    "range": {
-      "min": 300,
-      "max": 450
-    },
-    "style": {
-      "margin": 0,
-      "padding": 20
-    },
-    "children": {
-      "Activity" : {
-        "fit": 1,
-        "style": {
-          "margin": 0,
-          "padding": 10
-        }
-      }
-    }
-  },
-  ]
-}
-
-class App extends React.Component {
-  constructor(props) {
-  super(props)
-    this.state = {
-      height: 0,
-      width: 0,
-      authUser: null,
-    }
-    this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
-  }
-  componentDidMount() {
-    this.updateWindowDimensions()
-    window.addEventListener('resize', this.updateWindowDimensions)
-    this.props.firebase.auth.onAuthStateChanged(authUser => {
-      authUser
-        ? this.setState({ authUser })
-        : this.setState({ authUser: null });
-    })
-  }
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.updateWindowDimensions)
-    this.listener();
-  }
-  updateWindowDimensions() {
-    this.setState({ width: window.innerWidth, height: window.innerHeight })
-  }
-
-  render() {
-    return (
-      <div>
-        <AuthUserContext.Provider value={this.state.authUser}>
-          <BrowserRouter>
-            <div>
-              <Header  />
-              <Switch>
-                <Route
-                  path="/" exact
-                  render={(props)=><Home />}
-                />
-                <Route
-                  path="/help"
-                  render={(props)=><Basic header="Help" content="This is example help content" />}
-                />
-                <Route
-                  path="/tos"
-                  render={(props)=><TOS />}
-                />
-                <Route
-                  path="/about"
-                  render={(props)=><Basic header="About" content="This is example about content" />}
-                />
-                <Route
-                  path="/addyourbusiness"
-                  render={(props)=><AddYourBusiness />}
-                />
-                <Route
-                  path="/signup"
-                  render={(props)=><SignUp />}
-                />
-                <Route
-                  path="/signin"
-                  render={(props)=><SignIn />}
-                />
-                <Route
-                  path="/profile"
-                  render={(props)=><Profile />}
-                />
-              </Switch>
-            </div>
-          </BrowserRouter>
-        </AuthUserContext.Provider>
-      </div>
-    )
-  }
-}
-
-export default withFirebase(App)
+export default withAuthentication(App)

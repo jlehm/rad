@@ -1,6 +1,8 @@
 import React from 'react'
 import './Home.css'
 
+import withAuthorization from './../HOCs/withAuthorization.js'
+
 import SearchContainer from './../containers/SearchContainer.js'
 import Categories from './../features/Categories.js'
 import Recommended from './../features/Recommended.js'
@@ -102,4 +104,6 @@ class Home extends React.Component {
   }
 }
 
-export default Home
+const condition = authUser => !!authUser
+
+export default withAuthorization(condition)(Home)

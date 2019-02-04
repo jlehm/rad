@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import './Menu.css';
 
 import AuthUserContext from './../containers/AuthUserContext.js'
+import SignOutButton from './../components/SignOutButton.js'
 
 class Menu extends Component {
   static propTypes = {
@@ -30,10 +31,7 @@ class Menu extends Component {
         },{
           "label": "Sign In",
           "route": "/signin"
-        },{
-          "label": "Sign Out",
-          "route": "/signout"
-        }
+        },
       ]
     }
     if (!routesObj) {
@@ -41,15 +39,15 @@ class Menu extends Component {
     }
     return (
       <div className="Menu">
-
-          {routesObj.routes.map((route) => {
-            return (
-              route.route === this.props.location.pathname ) ? (null) : (<NavLink className="Menu-item" key={route.route.toString()} to={route.route}>{route.label}</NavLink>)
-            })
-          }
-
+        {routesObj.routes.map((route) => {
+          return (
+            route.route === this.props.location.pathname ) ? (null) : (<NavLink className="Menu-item" key={route.route.toString()} to={route.route}>{route.label}</NavLink>)
+          })
+        }
+        <SignOutButton />
       </div>
     )
   }
 }
+
 export default withRouter(Menu);
