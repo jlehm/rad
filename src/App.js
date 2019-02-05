@@ -12,6 +12,9 @@ import AddYourBusiness from './pages/AddYourBusiness.js'
 import SignUp from './pages/SignUp.js'
 import SignIn from './pages/SignIn.js'
 import Profile from './pages/Profile.js'
+import Account from './pages/Account.js'
+import Admin from './pages/Admin.js'
+
 
 const App = () => (
   <div>
@@ -50,6 +53,14 @@ const App = () => (
           <Route
             path="/profile"
             render={(props)=><Profile />}
+          />
+          <Route
+            path="/account"
+            render={(props)=><Account />}
+          />
+          <Route
+            path="/admin"
+            render={(props)=><Admin />}
           />
         </Switch>
       </React.Fragment>

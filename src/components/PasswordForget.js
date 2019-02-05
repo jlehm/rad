@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-import { withFirebase } from '../Firebase'
+import { withFirebase } from './../containers/FirebaseContext.js'
 
 const INITIAL_STATE = {
   email: '',

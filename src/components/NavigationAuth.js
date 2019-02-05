@@ -17,8 +17,11 @@ const NavigationAuth = (props) => {
         "label": "Help",
         "route": "/help"
       },{
-        "label": "Sign Up",
-        "route": "/signup"
+        "label": "Account",
+        "route": "/account"
+      },{
+        "label": "Admin",
+        "route": "/admin"
       }
     ]
   }
