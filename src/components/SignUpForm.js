@@ -63,7 +63,9 @@ class SignUpForm extends React.Component {
       <form
         className="signUpForm"
         onSubmit={this.onSubmit}>
-        <div className="signUpFormLabel">Sign Up</div>
+        <div>Already a member? <a href="/">Sign In</a></div>
+        <div className="signUpFormLabel">Create an Account</div>
+        <div>Have a business? <a href="/signup">Create a business account</a></div>
         <div className="signInFormInputWrapper">
           <input
             className="signUpFormInput"
@@ -104,11 +106,12 @@ class SignUpForm extends React.Component {
             placeholder="Confirm Password"
           />
         </div>
+        <div>By creating an account, you agree to our <a href="/">User Agreement</a> and acknowledge reading our  <a href="/">User Privacy Notice.</a></div>
         <div className="signInFormInputWrapper">
           <button
             className="signUpFormButton"
             disabled={isInvalid}
-            type="submit">Sign Up
+            type="submit">Create an Account
           </button>
         </div>
 

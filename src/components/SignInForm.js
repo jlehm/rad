@@ -48,7 +48,8 @@ class SignInForm extends React.Component {
         <form
           className="signInForm"
           onSubmit={this.onSubmit}>
-            <div className="signInFormLabel">Sign In</div>
+            <div className="signInFormLabel">Welcome</div>
+            <div>Sign In to Rad Dad or <a href="/signup">create an account</a></div>
             <div className="signInFormInputWrapper">
               <input
                 className="signInFormInput"
