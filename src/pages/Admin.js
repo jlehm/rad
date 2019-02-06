@@ -31,7 +31,6 @@ class Admin extends Component {
   }
   componentDidMount() {
     this.setState({ loading: true })
-
     this.props.firebase.users().on('value', snapshot => {
       const usersObject = snapshot.val()
 
@@ -39,7 +38,6 @@ class Admin extends Component {
         ...usersObject[key],
         uid: key,
       }))
-
       this.setState({
         users: usersList,
         loading: false,

@@ -60,36 +60,57 @@ class SignUpForm extends React.Component {
       email === '' ||
       username === ''
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          name="username"
-          value={username}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Full Name"
-        />
-        <input
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          name="passwordOne"
-          value={passwordOne}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password"
-        />
-        <input
-          name="passwordTwo"
-          value={passwordTwo}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Confirm Password"
-        />
-        <button disabled={isInvalid} type="submit">Sign Up</button>
+      <form
+        className="signUpForm"
+        onSubmit={this.onSubmit}>
+        <div className="signUpFormLabel">Sign Up</div>
+        <div className="signInFormInputWrapper">
+          <input
+            className="signUpFormInput"
+            name="username"
+            value={username}
+            onChange={this.onChange}
+            type="text"
+            placeholder="Full Name"
+          />
+        </div>
+        <div className="signInFormInputWrapper">
+          <input
+            className="signUpFormInput"
+            name="email"
+            value={email}
+            onChange={this.onChange}
+            type="text"
+            placeholder="Email Address"
+          />
+        </div>
+        <div className="signInFormInputWrapper">
+          <input
+            className="signUpFormInput"
+            name="passwordOne"
+            value={passwordOne}
+            onChange={this.onChange}
+            type="password"
+            placeholder="Password"
+          />
+        </div>
+        <div className="signInFormInputWrapper">
+          <input
+            className="signUpFormInput"
+            name="passwordTwo"
+            value={passwordTwo}
+            onChange={this.onChange}
+            type="password"
+            placeholder="Confirm Password"
+          />
+        </div>
+        <div className="signInFormInputWrapper">
+          <button
+            className="signUpFormButton"
+            disabled={isInvalid}
+            type="submit">Sign Up
+          </button>
+        </div>
 
         {error && <p>{error.message}</p>}
       </form>

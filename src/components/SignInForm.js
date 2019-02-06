@@ -4,22 +4,24 @@ import { compose } from 'recompose'
 
 import { withFirebase } from './../containers/FirebaseContext.js'
 
+import './../components/ReusableInput.css'
+import './../components/ReusableButton.css'
+
+
 const INITIAL_STATE = {
   email: '',
   password: '',
   error: null,
-};
+}
 
 class SignInForm extends React.Component {
   constructor(props) {
     super(props)
-
     this.state = { ...INITIAL_STATE }
   }
 
   onSubmit = event => {
     const { email, password } = this.state
-
     this.props.firebase
       .doSignInWithEmailAndPassword(email, password)
       .then(() => {
@@ -29,7 +31,6 @@ class SignInForm extends React.Component {
       .catch(error => {
         this.setState({ error })
       })
-
     event.preventDefault()
   }
 
@@ -43,28 +44,47 @@ class SignInForm extends React.Component {
     const isInvalid = password === '' || email === ''
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          name="password"
-          value={password}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password"
-        />
-        <button disabled={isInvalid} type="submit">
-          Sign In
-        </button>
-
-        {error && <p>{error.message}</p>}
-      </form>
-    );
+      <div className="signInFormWrapper">
+        <form
+          className="signInForm"
+          onSubmit={this.onSubmit}>
+            <div className="signInFormLabel">Sign In</div>
+            <div className="signInFormInputWrapper">
+              <input
+                className="signInFormInput"
+                name="email"
+                value={email}
+                onChange={this.onChange}
+                type="text"
+                placeholder="Email Address"
+              />
+            </div>
+            <div className="signInFormInputWrapper">
+              <input
+                className="signInFormInput"
+                name="password"
+                value={password}
+                onChange={this.onChange}
+                type="password"
+                placeholder="Password"
+              />
+          </div>
+          <div className="signInFormInputWrapper">
+            <button
+              className="signInFormButton"
+              disabled={isInvalid}
+              type="submit"
+            >
+              Sign In
+            </button>
+          </div>
+          <div>
+            <div className="borderBox"></div>
+            {error && <p>{error.message}</p>}
+          </div>
+        </form>
+      </div>
+    )
   }
 }
 
