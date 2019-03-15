@@ -7,19 +7,14 @@ import ReusableButton from './../components/ReusableButton.js'
 import ReusableLink from './../components/ReusableLink.js'
 
 import './../components/SignInForm.css'
-import './../components/SignInForm.css'
 
-
-class SignIn extends React.Component {
-  render() {
-    return(
-      <div>
-        <BackButtonHeader />
-          <SignInForm />
-        <Footer />
-      </div>
-    )
-  }
+const SignIn = () => {
+  return(
+    <div>
+      <SignInForm />
+      <Footer />
+    </div>
+  )
 }
 
 export default SignIn

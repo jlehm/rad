@@ -19,9 +19,6 @@ const NavigationAuth = (props) => {
       },{
         "label": "Account",
         "route": "/account"
-      },{
-        "label": "Admin",
-        "route": "/admin"
       }
     ]
   }
@@ -32,6 +29,9 @@ const NavigationAuth = (props) => {
           route.route === props.location.pathname ) ? (null) : (<NavLink className="Menu-item" key={route.route.toString()} to={route.route}>{route.label}</NavLink>)
         })
       }
+      {props.authUser.roles.includes('ADMIN') && (
+        <NavLink to={'/admin'} className="Menu-item" key="admin">Admin</NavLink>
+      )}
       <SignOutButton />
     </div>
   )

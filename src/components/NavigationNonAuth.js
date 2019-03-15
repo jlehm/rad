@@ -7,9 +7,6 @@ const NavigationNonAuth = (props) => {
   const routesObj = {
     "routes": [
       {
-        "label": "Add your business",
-        "route": "/addyourbusiness"
-      },{
         "label": "About",
         "route": "/about"
       },{

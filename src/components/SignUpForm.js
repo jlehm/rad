@@ -3,9 +3,6 @@ import { withFirebase } from './../containers/FirebaseContext.js'
 import { withRouter } from 'react-router-dom'
 import { compose } from 'recompose'
 
-
-import ReusableInput from './../components/ReusableInput.js'
-import ReusableButton from './../components/ReusableButton.js'
 import './SignUpForm.css'
 
 const INITIAL_STATE = {
@@ -13,6 +10,7 @@ const INITIAL_STATE = {
   email: '',
   passwordOne: '',
   passwordTwo: '',
+  isAdmin: false,
   error: null,
 }
 
@@ -22,10 +20,18 @@ class SignUpForm extends React.Component {
     this.state = {...INITIAL_STATE}
   }
   onChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({ [event.target.name]: event.target.value })
+  }
+  onChangeCheckbox = event => {
+    this.setState({ [event.target.name]: event.target.checked });
   }
   onSubmit = event => {
-    const { username, email, passwordOne } = this.state;
+    const { username, email, passwordOne, isAdmin } = this.state;
+    const roles = [];
+
+    if (isAdmin) {
+      roles.push('ADMIN');
+    }
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
@@ -35,15 +41,16 @@ class SignUpForm extends React.Component {
           .set({
             username,
             email,
-          });
+            roles,
+          })
       })
       .then(authUser => {
         this.setState({ ...INITIAL_STATE })
         this.props.history.push('/')
       })
       .catch(error => {
-        this.setState({ error });
-      });
+        this.setState({ error })
+      })
     event.preventDefault();
   }
   render() {
@@ -52,6 +59,7 @@ class SignUpForm extends React.Component {
       email,
       passwordOne,
       passwordTwo,
+      isAdmin,
       error,
     } = this.state
     const isInvalid =
@@ -73,7 +81,7 @@ class SignUpForm extends React.Component {
             value={username}
             onChange={this.onChange}
             type="text"
-            placeholder="Full Name"
+            placeholder="Username"
           />
         </div>
         <div className="signInFormInputWrapper">
@@ -86,7 +94,7 @@ class SignUpForm extends React.Component {
             placeholder="Email Address"
           />
         </div>
-        <div className="signInFormInputWrapper">
+        <div className="signUpFormInputWrapper">
           <input
             className="signUpFormInput"
             name="passwordOne"
@@ -96,7 +104,7 @@ class SignUpForm extends React.Component {
             placeholder="Password"
           />
         </div>
-        <div className="signInFormInputWrapper">
+        <div className="signUpFormInputWrapper">
           <input
             className="signUpFormInput"
             name="passwordTwo"
@@ -106,8 +114,19 @@ class SignUpForm extends React.Component {
             placeholder="Confirm Password"
           />
         </div>
+        <div className="SignUpFormInputWrapper">
+        <label>
+          Admin:
+          <input
+            name="isAdmin"
+            type="checkbox"
+            checked={isAdmin}
+            onChange={this.onChangeCheckbox}
+          />
+        </label>
+        </div>
         <div>By creating an account, you agree to our <a href="/">User Agreement</a> and acknowledge reading our  <a href="/">User Privacy Notice.</a></div>
-        <div className="signInFormInputWrapper">
+        <div className="signUpFormInputWrapper">
           <button
             className="signUpFormButton"
             disabled={isInvalid}

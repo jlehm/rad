@@ -44,7 +44,8 @@ class Menu extends Component {
             route.route === this.props.location.pathname ) ? (null) : (<NavLink className="Menu-item" key={route.route.toString()} to={route.route}>{route.label}</NavLink>)
           })
         }
-        <SignOutButton />
+        <div className="Menu-item"><SignOutButton /></div>
+
       </div>
     )
   }

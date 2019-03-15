@@ -1,15 +1,25 @@
 import React from 'react'
 import withAuthorization from './../HOCs/withAuthorization.js'
 
+import ProfileImage from './../components/ProfileImage.js'
+
 import PasswordForgetForm from './../components/PasswordForget.js'
 import PasswordChangeForm from './../components/PasswordChange.js'
 
+import './../pages/Account.css'
+
 const AccountPage = () => (
-  <div>
-    <h1>Account Page</h1>
-    <PasswordForgetForm />
-    <PasswordChangeForm />
-  </div>
+  <React.Fragment>  
+    <div className="profile">
+      <h2>Profile</h2>
+      <ProfileImage />
+    </div>
+    <div className="passwordReset">
+      <h2>Password Reset</h2>
+      <PasswordForgetForm />
+      <PasswordChangeForm />
+    </div>
+  </React.Fragment>
 )
 
 const condition = authUser => !!authUser

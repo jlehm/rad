@@ -19,7 +19,7 @@
   line-height: 60px;
   font-family: -apple-system, BlinkMacSystemFont;
 }
-.signInFormInputWrapper {
+.signUpFormInputWrapper {
   margin: 0;
   overflow: auto;
   padding: 0;
@@ -41,7 +41,7 @@
 }
 .signUpFormButton {
   height: 40px;
-  width: 150px;
+  min-width: 150px;
   box-sizing: border-box;
   margin: 10px;
   font-size: 16px;

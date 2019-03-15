@@ -71,13 +71,14 @@ class SignInForm extends React.Component {
               />
           </div>
           <div className="signInFormInputWrapper">
-            <button
+            {(!isInvalid)?
+            (<button
               className="signInFormButton"
-              disabled={isInvalid}
               type="submit"
             >
               Sign In
-            </button>
+            </button>):
+            (null)}
           </div>
           <div>
             <div className="borderBox"></div>

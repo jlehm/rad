@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 
 import { withFirebase } from './../containers/FirebaseContext.js'
 
+import './../components/PasswordForget.css'
+
 const INITIAL_STATE = {
   email: '',
   error: null,
@@ -11,7 +13,6 @@ const INITIAL_STATE = {
 class PasswordForgetForm extends Component {
   constructor(props) {
     super(props)
-
     this.state = { ...INITIAL_STATE }
   }
 
@@ -40,15 +41,19 @@ class PasswordForgetForm extends Component {
     const isInvalid = email === ''
 
     return (
-      <form onSubmit={this.onSubmit}>
+      <form onSubmit={this.onSubmit}
+            className="passwordForgetForm"
+      >
         <input
           name="email"
           value={this.state.email}
           onChange={this.onChange}
           type="text"
           placeholder="Email Address"
+          className="passwordForgetInput"
         />
-        <button disabled={isInvalid} type="submit">
+        <button disabled={isInvalid} type="submit"
+                className="passwordForgetButton">
           Reset My Password
         </button>
 
@@ -58,6 +63,4 @@ class PasswordForgetForm extends Component {
   }
 }
 
-const PasswordForgetFormWithFirebase = withFirebase(PasswordForgetForm)
-
-export default PasswordForgetFormWithFirebase
+export default withFirebase(PasswordForgetForm)

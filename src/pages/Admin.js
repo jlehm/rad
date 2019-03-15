@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { compose } from 'recompose'
+import withAuthorization from './../HOCs/withAuthorization.js'
 
 import { withFirebase } from './../containers/FirebaseContext.js'
 
@@ -60,4 +62,10 @@ class Admin extends Component {
   }
 }
 
-export default withFirebase(Admin)
+const condition = authUser =>
+  authUser && authUser.roles.includes('ADMIN')
+
+export default compose(
+  withAuthorization(condition),
+  withFirebase,
+)(Admin)
