@@ -10,10 +10,6 @@ import './../pages/Account.css'
 
 const AccountPage = () => (
   <React.Fragment>  
-    <div className="profile">
-      <h2>Profile</h2>
-      <ProfileImage />
-    </div>
     <div className="passwordReset">
       <h2>Password Reset</h2>
       <PasswordForgetForm />
